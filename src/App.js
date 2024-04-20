@@ -7,6 +7,7 @@ function App() {
   const [course, setCourse] = useState('');
   const [courseResult, setCourseResult] = useState('no result yet');
   const [review, setReview] = useState('');
+  const [university, setUniversity] = useState('');
   const [universityResult, setUniversityResult] = useState('no result yet');
   const [sentenceLoading, setSentenceLoading] = useState(false);
   const [courseLoading, setCourseLoading] = useState(false);
@@ -38,7 +39,9 @@ function App() {
   const handleReviewChange = (event) => {
     setReview(event.target.value);
   };
-
+  const handleUniversityChange = (event) => {
+    setUniversity(event.target.value);
+  };
   const handleSentenceProcess = async () => {
     setSentenceLoading(true);
     try {
@@ -53,7 +56,7 @@ function App() {
       }
 
       const data = await response.json();
-      setSentenceResult(data.vader_sentiment); // Assuming response structure
+      setSentenceResult(data.vader_sentiment); 
     } catch (error) {
       console.error('Error processing sentence:', error);
       setSentenceResult('Error: Failed to process sentence.');
@@ -76,7 +79,7 @@ function App() {
       }
 
       const data = await response.json();
-      setCourseResult(data.recommendation); // Assuming response structure
+      setCourseResult(data.recommendation); 
     } catch (error) {
       console.error('Error processing course:', error);
       setCourseResult('Error: Failed to process course.');
@@ -88,11 +91,10 @@ function App() {
   const handleUniversityProcess = async () => {
     setUniversityLoading(true);
     try {
-      // Replace '/api/process-review' with your actual API endpoint for processing reviews
-      const response = await fetch('/api/process-review', {
+      const response = await fetch('http://127.0.0.1:5000/predictrate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ review }),
+        body: JSON.stringify({ review: review, institution: university }),
       });
 
       if (!response.ok) {
@@ -100,7 +102,7 @@ function App() {
       }
 
       const data = await response.json();
-      setUniversityResult(data.result); // Assuming response structure
+      setUniversityResult(data.predicted_rate); 
     } catch (error) {
       console.error('Error processing review:', error);
       setUniversityResult('Error: Failed to process review.');
@@ -177,7 +179,11 @@ function App() {
         </div>
         <div className="divHolder">
           <label htmlFor="university">Choose your university</label>
-          <select id="university">
+          <select
+            id="university"
+            value={university}
+            onChange={handleUniversityChange}
+          >
             {universities.map((uni) => (
               <option key={uni} value={uni}>
                 {uni}
