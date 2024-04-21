@@ -62,7 +62,9 @@ function App() {
       }
 
       const data = await response.json();
-      setSentenceResult(data.vader_sentiment); 
+      const { fasttext_prediction, vader_scores } = data;
+      const { compound, neg, neu , pos } = vader_scores;
+      setSentenceResult(`${ fasttext_prediction }, compound score: ${ compound }, neg score: ${ neg }, neu score: ${ neu }, pos score: ${ pos }`);
     } catch (error) {
       console.error('Error processing sentence:', error);
       setSentenceResult('Error: Failed to process sentence.');
