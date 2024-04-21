@@ -26,7 +26,13 @@ function App() {
     'introduction to structured query language sql',
   ];
 
-  const universities = ['MIT', 'Stanford', 'Harvard'];
+  const universities = ["(ISC)²","Advancing Women in Product","Alberta Machine Intelligence Institute","Amazon Web Services",
+  "American Museum of Natural History","Arizona State University","Atlassian","Autodesk","BCG","Berklee College of Music",
+  "Birkbeck"," University of London","California Institute of the Arts","Case Western Reserve University","Cloudera",
+  "Columbia University","Copenhagen Business School","DeepLearning.AI","Duke University","E-Learning Development Fund",
+  "EDHEC Business School","ESCP Business School","ESSEC Business School","Eindhoven University of Technology",
+  "Emory University","Erasmus University Rotterdam"]
+  // const universities = ['MIT', 'Stanford', 'Harvard'];
 
   const handleSentenceChange = (event) => {
     setSentence(event.target.value);
