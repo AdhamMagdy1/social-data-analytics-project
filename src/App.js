@@ -51,7 +51,7 @@ function App() {
   const handleSentenceProcess = async () => {
     setSentenceLoading(true);
     try {
-      const response = await fetch('http:///localhost:5000/analyze_sentiment', {
+      const response = await fetch('http://127.0.0.1:5000/analyze_sentiment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sentence: sentence }),

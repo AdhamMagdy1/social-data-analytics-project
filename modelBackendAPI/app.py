@@ -48,10 +48,10 @@ def analyze_sentiment():
     vader_sentiment = format_vader_sentiment(vader_result)
 
     response = {
-        "sentence": "sentence is {}".format(sentence),
+        # "sentence": "sentence is {}".format(sentence),
         "fasttext_prediction": fasttext_result,
-        "vader_sentiment": vader_sentiment,
-        # "vader_scores": vader_result  # Include VADER sentiment scores in the response
+        # "vader_sentiment": vader_sentiment,
+        "vader_scores": vader_result  # Include VADER sentiment scores in the response
     }
 
     return jsonify(response)
